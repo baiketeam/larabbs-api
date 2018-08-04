@@ -31,4 +31,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Topic::class);
     }
+
+    // 用户授权方法,在TopicPolicy里调用该方法
+    public function isAuthorOf($model)
+    {
+        return $this->id == $model->user_id;
+    }
 }
