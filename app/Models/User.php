@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+    use HasRoles;
+
     use Notifiable {
         notify as protected laravelNotify;
     }
@@ -55,7 +58,7 @@ class User extends Authenticatable
         return $this->hasMany(Reply::class);
     }
 
-    // 纬度消息读取后取消通知提示
+    // 未读消息读取后取消通知提示
     public function markAsRead()
     {
         $this->notification_count = 0;
