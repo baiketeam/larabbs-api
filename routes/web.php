@@ -15,7 +15,7 @@
 //     return view('welcome');
 // });
 
-Route::get('/', 'PagesController@root')->name('root');
+// Route::get('/', 'PagesController@root')->name('root');
 Route::get('/', 'TopicsController@index')->name('root');
 Auth::routes();// 相当于如下9个路由,替换为下面9个路由
 
