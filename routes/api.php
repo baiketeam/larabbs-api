@@ -35,4 +35,6 @@ $api->version('v1', [
     $api->post('users', 'UsersController@store')
         ->name('api.users.store');
     });
+    $api->post('captchas', 'CaptchasController@store')
+        ->name('api.captchas.store');
 });
