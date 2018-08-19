@@ -63,7 +63,6 @@ class AuthorizationsController extends Controller
         return $this->respondWithToken($token)->setStatusCode(201);
     }
 
-
     public function store(AuthorizationRequest $request)
     {
         $username = $request->username;
