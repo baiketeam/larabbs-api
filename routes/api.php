@@ -36,6 +36,9 @@ $api->version('v1', [
         // 主题列表页
         $api->get('topics', 'TopicsController@index')
             ->name('api.topics.index');
+        // 话题详情
+        $api->get('topics/{topic}', 'TopicsController@show')
+            ->name('api.topics.show');
         // 某个用户发表的主题
         $api->get('users/{user}/topics', 'TopicsController@userIndex')
             ->name('api.users.topics.index');
