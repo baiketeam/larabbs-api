@@ -16,6 +16,9 @@ class TopicsController extends Controller
         $topic->user_id = $this->user()->id;
         $topic->save();
 
+        // 测试错误提示返回信息
+        // return $this->errorResponse(403, '您还没有通过认证', 1003);
+
         return $this->response->item($topic, new TopicTransformer())
             ->setStatusCode(201);
     }
