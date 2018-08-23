@@ -42,6 +42,12 @@ $api->version('v1', [
         // 某个用户发表的主题
         $api->get('users/{user}/topics', 'TopicsController@userIndex')
             ->name('api.users.topics.index');
+        // 话题回复列表
+        $api->get('topics/{topic}/replies', 'RepliesController@index')
+            ->name('api.topics.replies.index');
+        // 某个用户的回复列表
+        $api->get('users/{user}/replies', 'RepliesController@userIndex')
+            ->name('api.users.replies.index');
         // 需要token验证的接口
         $api->group(['middleware' => 'api.auth'], function($api) {
             // 当前登陆用户信息
