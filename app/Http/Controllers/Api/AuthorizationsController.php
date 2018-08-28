@@ -39,6 +39,7 @@ class AuthorizationsController extends Controller
             }
 
             $oauthUser = $driver->userFromToken($token);
+            // dd($oauthUser);
         } catch (\Exception $e) {
             return $this->response->errorUnauthorized('参数错误，未获取用户信息');
         }
@@ -59,7 +60,8 @@ class AuthorizationsController extends Controller
                         'name' => $oauthUser->getNickname(),
                         'avatar' => $oauthUser->getAvatar(),
                         'weixin_openid' => $oauthUser->getId(),
-                        'weixin_unionid' => $oauthUser->offsetGet('unionid'),
+                        // 'weixin_unionid' => $oauthUser->offsetGet('unionid'),
+                        'weixin_unionid' => $unionid,
                     ]);
                 }
 
@@ -73,6 +75,7 @@ class AuthorizationsController extends Controller
         return $this->response->array($result)->setStatusCode(201);
     }
 
+    // JWT认证登陆接口
     // public function store(AuthorizationRequest $request)
     // {
     //     $username = $request->username;
@@ -90,6 +93,7 @@ class AuthorizationsController extends Controller
     //     return $this->respondWithToken($token)->setStatusCode(201);
     // }
 
+    // passport认证登陆接口
     public function store(AuthorizationRequest $originRequest, AuthorizationServer $server, ServerRequestInterface $serverRequest)
     {
         try {
@@ -114,6 +118,7 @@ class AuthorizationsController extends Controller
     //     return $this->respondWithToken($token);
     // }
 
+    // passport认证token刷新
     public function update(AuthorizationServer $server, ServerRequestInterface $serverRequest)
     {
         try {
@@ -129,6 +134,7 @@ class AuthorizationsController extends Controller
     //     return $this->response->noContent();
     // }
 
+    // passport认证删除token
     public function destroy()
     {
         $this->user()->token()->revoke();

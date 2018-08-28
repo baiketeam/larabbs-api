@@ -107,6 +107,7 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    // Passport默认搜索邮箱进行登陆,添加次方法后可使用邮箱与手机号同时登陆
     public function findForPassport($username)
     {
         filter_var($username, FILTER_VALIDATE_EMAIL) ?
